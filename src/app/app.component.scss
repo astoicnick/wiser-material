@@ -1,0 +1,22 @@
+mat-sidenav-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.drawer-container {
+  padding-left: 20px;
+  padding-left: 20px;
+  min-width: 40vw;
+}
+.menuIcon {
+  font-size: 30px;
+  margin-right: 10px;
+}
+@media only screen and (min-width: 500px) {
+.menuIcon {
+  font-size: 30px;
+}
+}

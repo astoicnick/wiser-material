@@ -1,0 +1,11 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-right: 10px auto;
+  margin-left: 10px auto;
+}
+mat-form-field {
+  margin-bottom: 25px;
+}

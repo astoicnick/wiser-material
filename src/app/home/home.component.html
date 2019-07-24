@@ -1,0 +1,19 @@
+<!-- <div class="chipContainer">
+  <mat-chip-list fxLayout="column wrap" aria-label="Action Selection">
+    <mat-chip>Regular chip</mat-chip>
+    <mat-chip color="accent" selected><a href="">Accented chip</a></mat-chip>
+    <mat-chip color="primary" selected>Primary chip</mat-chip>
+  </mat-chip-list>
+</div> -->
+<div style="text-align: center;" fxLayout="column wrap" fxLayoutGap="1px" fxLayoutAlign="flex-start">
+  <mat-card fxFlex="0 1" *ngFor="let wisdom of wisdomList">
+    <mat-card-subtitle style="text-align: left; font-size: 1.2em;"> @{{ wisdom.userid }} </mat-card-subtitle>
+    <mat-card-content style="font-family: 'Cinzel', cursive;">
+    <h2>{{ wisdom.content }}</h2>
+    </mat-card-content>
+    <mat-card-actions style="padding: 0px; margin: 0px;">
+      <p>{{ wisdom.source }}</p>
+      <p style="text-align: center;"> {{ wisdom.authorname }}</p>
+    </mat-card-actions>
+  </mat-card>
+</div>
