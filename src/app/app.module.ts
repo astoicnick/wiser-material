@@ -10,12 +10,18 @@ import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateComponent } from './create/create.component';
 import { FormsModule } from '@angular/forms';
+import { BrowseComponent } from './browse/browse.component';
+import { DummyComponent } from './dummy/dummy.component';
+import { ManageComponent } from './manage/manage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateComponent
+    CreateComponent,
+    BrowseComponent,
+    DummyComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Wisdom } from '../app/wisdom';
+import { Wisdom } from './wisdom';
 import { Author } from './Author';
 import { CreateWisdom } from './CreateWisdom';
  
@@ -21,13 +21,29 @@ authorList: Author[] = [];
   constructor(private http: HttpClient) { }
 
   createWisdom(wisdomToAdd: CreateWisdom) {
-    console.log(wisdomToAdd);
-    return this.http.post(`${this.url}/wisdom`, wisdomToAdd, httpOptions);
+    return this.http.post(`${this.url}/wisdom`, wisdomToAdd, httpOptions)
+    .subscribe(a => (blank: any) => a);
   }
 
   getWisdom(): Wisdom[] {
     var query:  any = [];
     query = this.http.get(`${this.url}/wisdom`, httpOptions);
+    query.subscribe(wisdom => {
+      wisdom.map(w => {
+        let newWiz = new Wisdom();
+        newWiz.id = w.WisdomId;
+        newWiz.authorid = w.ScrollAuthor.AuthorId;
+        newWiz.content = w.Content;
+        newWiz.source = w.Source;
+        newWiz.authorname = w.ScrollAuthor.AuthorName;
+        this.wisdomList.push(newWiz);
+        });
+      });
+    return this.wisdomList;
+  }
+  getYourWisdom(): Wisdom[] {
+    var query:  any = [];
+    query = this.http.get(`${this.url}/wisdom/yours`, httpOptions);
     query.subscribe(wisdom => {
       wisdom.map(w => {
         let newWiz = new Wisdom();
@@ -54,5 +70,13 @@ authorList: Author[] = [];
       });
     });
     return this.authorList;
+  }
+  removeWisdom(id: number) {
+    console.log(id);
+    return this.http.delete(`${this.url}/wisdom/${id}`, httpOptions)
+    .subscribe(a => {
+      (blank: any) => a
+      location.reload();
+    });
   }
 }

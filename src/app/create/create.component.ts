@@ -4,6 +4,7 @@ import { WapiServiceService } from '../wapi-service.service';
 import { CreateWisdom } from '../CreateWisdom';
 import { FormControl } from '@angular/forms';
 import { Source } from 'webpack-sources';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -23,17 +24,17 @@ wisdomToAdd: CreateWisdom = {
 };
 
 authorList: Author[] = [];
-  constructor(private wapi: WapiServiceService) {}
+  constructor(private wapi: WapiServiceService, private router: Router) {}
 
   ngOnInit() {
     this.getAuthors();
   }
   getAuthors(): void {
     this.authorList = this.wapi.getAuthors();
-    console.log(this.authorList);
   }
   addWisdom() {
     this.wapi.createWisdom(this.wisdomToAdd);
+    this.router.navigate(['/home']);
   }
   setAuthorId(id: number): void {
     this.wisdomToAdd.AuthorId =  id;

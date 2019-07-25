@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Wisdom } from '../wisdom';
 import { WapiServiceService } from '../wapi-service.service';
 
@@ -10,14 +10,13 @@ import { WapiServiceService } from '../wapi-service.service';
 
 export class HomeComponent implements OnInit {
   wisdomList: Wisdom[] = [];
-
+  counter: number = 0;
   constructor(private wapi: WapiServiceService) { }
 
   ngOnInit() {
     this.getWisdom();
   }
   getWisdom(): void {
-    this.wisdomList =  this.wapi.getWisdom();
-      
-}
+    this.wisdomList = this.wapi.getYourWisdom();
+  }
 }

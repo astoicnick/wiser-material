@@ -1,0 +1,11 @@
+<div style="text-align: center;" fxLayout="column wrap" fxLayoutGap="1px" fxLayoutAlign="flex-start">
+    <mat-card fxFlex="0 1" *ngFor="let wisdom of wisdomList">
+      <mat-card-content style="font-family: 'Cinzel', cursive;">
+      <h2>{{ wisdom.content }}</h2>
+      </mat-card-content>
+      <mat-card-actions style="padding: 0px; margin: 0px;">
+        <p style="margin: 5 auto;">{{ wisdom.source }}</p>
+        <p style="text-align: center;margin: 5 auto;"> {{ wisdom.authorname }}</p>
+      </mat-card-actions>
+    </mat-card>
+  </div>

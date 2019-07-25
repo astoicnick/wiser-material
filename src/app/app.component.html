@@ -1,26 +1,26 @@
 <mat-sidenav-container>
-  <mat-sidenav #drawer (click)="drawer.toggle()" class="drawer-container" mode="over">
-    <button mat-icon-button (click)="drawer.toggle()">
+  <mat-sidenav  #drawer class="drawer-container"  (click)="drawer.toggle()" mode="over">
+    <button mat-icon-button>
       <mat-icon class="menuIcon">close</mat-icon>
     </button>
-    <h2 style="color: #2380c6">Wiser</h2>
+    <a (click)="sendHome()"><h2 style="color: #2380c6">Wiser</h2></a>
     <mat-nav-list>
       <a mat-list-item routerLink="/create" color="primary">Add Quote</a>
+      <a mat-list-item routerLink="/browse" color="primary">Browse All</a>
+      <a mat-list-item routerLink="/manage" color="primary">Manage</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-toolbar  style="background-color: #2380c6; color: white;">
+  <mat-toolbar fxLayoutAlign="center center" style="background-color: #2380c6; color: white;">
     <div class="mat-sidenav-container">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon class="menuIcon">menu</mat-icon>
       </button>
     </div>
     <div style="font-family: 'Cinzel Decorative', cursive; margin: 0 auto;">
-      <a routerLink="/home" style="text-decoration: none;color: white;"><span style="font-size: 1.5em;">Wiser</span></a>
+      <a (click)="sendHome()" style="text-decoration: none;color: white;cursor: pointer;"><span style="font-size: 1.6em;">Wiser</span></a>
     </div>
     <div style="float: right;">
-      <mat-nav-list>
-        <a routerLink="/create"><mat-icon class="menuIcon">add</mat-icon></a>
-      </mat-nav-list>
+        <button mat-icon-button routerLink="/create"><mat-icon>add</mat-icon></button>
     </div>
   </mat-toolbar>
   <router-outlet></router-outlet>

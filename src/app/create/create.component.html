@@ -1,6 +1,6 @@
 <form class="formContainer">
-  <h1 style="text-align: center;" color="accent">Add Wisdom</h1>
-    <h5 style="margin: 0;">Select Existing Author</h5>
+  <h1 style="font-family: 'Cinzel Decorative', cursive;text-align: center;" color="accent">Add Wisdom</h1>
+    <h3 style="margin: 0;">Select Existing Author</h3>
     <mat-form-field>
       <mat-select placeholder="Authors">
         <mat-option>None</mat-option>
@@ -10,7 +10,7 @@
       </mat-select>
     </mat-form-field>
 
-    <h5 style="margin: 0;">Author not there? Create a new one</h5>
+    <h3 style="margin: 0;">Author not there? Create a new one</h3>
     <mat-form-field style="margin-bottom: 0;">
       <mat-label>Author First Name</mat-label>
       <input matInput placeholder="First Name" [(ngModel)]="wisdomToAdd.AuthorFirstName"

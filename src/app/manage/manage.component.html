@@ -1,0 +1,14 @@
+<div style="text-align: center;" fxLayout="column wrap" fxLayoutGap="1px" fxLayoutAlign="flex-start">
+    <mat-card fxFlex="0 1" *ngFor="let wisdom of wisdomList">
+        <mat-card-content style="font-family: 'Cinzel', cursive;">
+            <h2>{{ wisdom.content }}</h2>
+        </mat-card-content>
+        <mat-card-actions>
+            <p>{{ wisdom.source }}</p>
+            <p> {{ wisdom.authorname }}</p>
+        </mat-card-actions>
+        <mat-card-footer style="margin-bottom: 10px; width: 20%;">
+            <button fxLayoutAlign="center end" mat-raised-button type=button (click)="clickMethod(wisdom.id)">DELETE</button>
+        </mat-card-footer>
+    </mat-card>
+</div>
