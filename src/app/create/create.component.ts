@@ -34,7 +34,7 @@ authorList: Author[] = [];
   }
   addWisdom() {
     this.wapi.createWisdom(this.wisdomToAdd);
-    this.router.navigate(['/home']);
+    location.replace('/home');
   }
   setAuthorId(id: number): void {
     this.wisdomToAdd.AuthorId =  id;

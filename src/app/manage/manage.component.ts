@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WapiServiceService } from '../wapi-service.service';
 import { Wisdom } from '../wisdom';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage',
@@ -10,20 +11,25 @@ import { Wisdom } from '../wisdom';
 export class ManageComponent implements OnInit {
   wisdomList: Wisdom[] = [];
   @Input() id: number;
-  constructor(private wapi: WapiServiceService) { }
+  constructor(private wapi: WapiServiceService, public router: Router) { }
 
   ngOnInit() {
-      this.getWisdom();
+    this.getWisdom();
   }
   getWisdom(): void {
-      this.wisdomList =  this.wapi.getYourWisdom();
-}
+    this.wisdomList = this.wapi.getYourWisdom();
+  }
   remove(id: number) {
     this.wapi.removeWisdom(id);
   }
-  clickMethod(id: number) {
-    if(confirm("Are you sure to delete "+id+"?")) {
+  confirmDelete(id: number) {
+    if (confirm("Are you sure to delete " + id + "?")) {
       this.remove(id);
     }
   }
+  setWisdomToEdit(id: number) {
+    this.wapi.getUpdateWisdom(id);
+    this.router.navigate(['edit']);
+  }
+
 }

@@ -11,8 +11,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateComponent } from './create/create.component';
 import { FormsModule } from '@angular/forms';
 import { BrowseComponent } from './browse/browse.component';
-import { DummyComponent } from './dummy/dummy.component';
 import { ManageComponent } from './manage/manage.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { ManageComponent } from './manage/manage.component';
     HomeComponent,
     CreateComponent,
     BrowseComponent,
-    DummyComponent,
-    ManageComponent
+    ManageComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

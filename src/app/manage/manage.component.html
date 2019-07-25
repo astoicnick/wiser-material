@@ -1,14 +1,17 @@
 <div style="text-align: center;" fxLayout="column wrap" fxLayoutGap="1px" fxLayoutAlign="flex-start">
-    <mat-card fxFlex="0 1" *ngFor="let wisdom of wisdomList">
-        <mat-card-content style="font-family: 'Cinzel', cursive;">
-            <h2>{{ wisdom.content }}</h2>
-        </mat-card-content>
-        <mat-card-actions>
-            <p>{{ wisdom.source }}</p>
-            <p> {{ wisdom.authorname }}</p>
-        </mat-card-actions>
-        <mat-card-footer style="margin-bottom: 10px; width: 20%;">
-            <button fxLayoutAlign="center end" mat-raised-button type=button (click)="clickMethod(wisdom.id)">DELETE</button>
+    <mat-card *ngFor="let wisdom of wisdomList" style="background-color: #fff2cc;color: darkslategray;">
+        <h2 style="font-family: Cinzel;">{{ wisdom.content }}</h2>
+        <mat-card-footer>
+            <div fxLayoutAlign="end end">
+                <h4 style="font-family: Ubuntu;margin-top: 0px; margin-bottom: 7px; margin-right: 10px; text-align: right;">-
+                    {{ wisdom.authorname }} <br> {{ wisdom.source }} </h4>
+            </div>
+            <div style="margin-bottom: 10px;justify-content: left;">
+                <button mat-raised-button (click)="setWisdomToEdit(wisdom.id)"
+                    style="background-color: antiquewhite; color: darkslategray; margin-right: 5px;">EDIT</button>
+                <button mat-raised-button (click)="confirmDelete(wisdom.id)"
+                    style="background-color: antiquewhite; color: darkslategray;">DELETE</button>
+            </div>
         </mat-card-footer>
     </mat-card>
 </div>

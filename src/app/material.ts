@@ -6,11 +6,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule, MatSelect} from '@angular/material/select';
+import {TextFieldModule} from '@angular/cdk/text-field'; 
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCardModule, MatListModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
-  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCardModule, MatListModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCardModule, MatListModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatSelectModule, TextFieldModule],
+  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCardModule, MatListModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatSelectModule,TextFieldModule],
 })
 
 export class MaterialModule { }

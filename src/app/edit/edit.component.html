@@ -1,0 +1,26 @@
+<form class="formContainer">
+  <h1 style="font-family: 'Cinzel Decorative', cursive;text-align: center;color:#2380c6;">Edit Wisdom</h1>
+  <h3 style="margin: 0;">Select Existing Author</h3>
+  <mat-form-field>
+    <mat-select [(value)]="wisdomToEdit.AuthorId" placeholder="{{wisdomToEdit.AuthorName}}">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let author of authorList" [value]="author.id"
+        name="AuthorId">
+        {{author.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Content</mat-label>
+    <textarea cdkTextareaAutosize matInput name="Content" [(ngModel)]="wisdomToEdit.Content"></textarea>
+    <mat-hint>The quote you want to remember</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Source</mat-label>
+    <input matInput name="Source" [(ngModel)]="wisdomToEdit.Source">
+    <mat-hint>The book and/or chapter the content is from</mat-hint>
+  </mat-form-field>
+  <button mat-raised-button (click)="editWisdom()">Add</button>
+</form>
