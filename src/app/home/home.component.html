@@ -1,9 +1,8 @@
-<div style="text-align: center;background-color: #fff2cc;color: darkslategray;" fxLayout="column wrap" fxLayoutGap="1px" fxLayoutAlign="flex-start">
+<div style="text-align: center;background-color: #fff2cc;color: black;" fxLayout="column wrap" fxLayoutGap="1px" fxLayoutAlign="flex-start">
     <mat-card *ngFor="let wisdom of wisdomList" style="padding-bottom: 10px;padding-top: 25px; background-color: #fff2cc;color: darkslategray;">
         <h2 style="font-family: Cinzel;">{{ wisdom.content }}</h2>
         <mat-card-footer>
             <div fxLayoutAlign="end end">
-
                 <h4 style="font-family: Ubuntu; margin-top: 0px; margin-bottom: 7px;margin-bottom: 20px; margin-right: 10px; text-align: right;">-
                     {{ wisdom.authorname }} <br> {{ wisdom.source }} </h4>
             </div>

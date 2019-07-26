@@ -7,10 +7,11 @@
                     {{ wisdom.authorname }} <br> {{ wisdom.source }} </h4>
             </div>
             <div style="margin-bottom: 10px;justify-content: left;">
-                <button mat-raised-button (click)="setWisdomToEdit(wisdom.id)"
-                    style="background-color: antiquewhite; color: darkslategray; margin-right: 5px;">EDIT</button>
-                <button mat-raised-button (click)="confirmDelete(wisdom.id)"
-                    style="background-color: antiquewhite; color: darkslategray;">DELETE</button>
+                <button mat-icon-button (click)="setWisdomToEdit(wisdom.id)"
+                    style="color: darkslategray; margin-right: 5px;"><mat-icon>edit</mat-icon></button>
+                    
+                <button mat-icon-button (click)="confirmDelete(wisdom.id)">
+                    <mat-icon style="color: darkslategray;">delete</mat-icon></button>
             </div>
         </mat-card-footer>
     </mat-card>

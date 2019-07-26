@@ -34,11 +34,11 @@ authorList: Author[] = [];
   }
   addWisdom() {
     this.wapi.createWisdom(this.wisdomToAdd);
-    location.replace('/home');
+    this.router.navigate(['manage'])
+    .then(a=> this.router.navigate(['home']));
   }
   setAuthorId(id: number): void {
     this.wisdomToAdd.AuthorId =  id;
-    console.log(this.wisdomToAdd);
   }
 
 }

@@ -4,12 +4,8 @@ import { Wisdom } from './wisdom';
 import { Author } from './Author';
 import { CreateWisdom } from './CreateWisdom';
 import { UpdateWisdom } from './UpdateWisdom';
+import { AuthService } from './auth.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': 'Bearer 6mUbLfSZrV1KmG3qjMiWAKrRsOkdplSe50OAyE-PcwK4bp7vcYg_QAVAvclxy9tiDgWA0tvxigJE2P2eIWXoItFE8xdC1yiukQW1RWa9EtgBHZpqC0w_UuukZ0BV_sMpiJXKWRtcOBO31B9ulAzkC_nuf09XHCPRo7dZyJTlZ55hC5ce2XEgVdpJPAbEgvVG2UpZZkUmpPya4dBBlE-tl8wXTN2H7D8OcPFJWD0fiQTk2w053adTqPu-KZB9rAliRK7u5llCGNpkerszUg_8ouyGCxsSeL8hlZiyBiZFLP14tozTUcEw_R1L1SfXNbS6H2bq16aBALKnUUiC_ebc3IXhp9bIdkkvlSryP0JNpZhpZZFhqInXsX5pW_XszXcO9EmO_3Q2MpS6cLcdvvhj5mZctYbfJ3Wqxp4We_UULK1JUXhCDgGG1b-bLyVy222GpdF2vwmmyl9zXBNRw1ZfqI5lxxoW9-wpxY_YSLpgKddM3DRxHg6Dpb3RDV2NHFfwc1IKu6cE8nxcsAoSv3OyZg'
-  })
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -29,19 +25,19 @@ export class WapiServiceService {
   };
 
   private url = 'https://wiserappapi.azurewebsites.net/api';
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient, private authService: AuthService) { }
+  private httpOptions: HttpHeaders = this.authService.setHeader();
   createWisdom(wisdomToAdd: CreateWisdom) {
-    return this.http.post(`${this.url}/wisdom`, wisdomToAdd, httpOptions)
-      .subscribe(a => (blank: any) => a);
+    console.log(wisdomToAdd);
+    return this.http.post(`${this.url}/wisdom`, wisdomToAdd,{headers: this.httpOptions} );
   }
   editWisdom(wisdomToEdit: UpdateWisdom) {
-    return this.http.put(`${this.url}/wisdom`, wisdomToEdit, httpOptions)
+    return this.http.put(`${this.url}/wisdom`, wisdomToEdit,{headers: this.httpOptions})
       .subscribe(wu => (blank: any) => wu);
   }
   getUpdateWisdom(id: number) {
     var query: any = [];
-    query = this.http.get<UpdateWisdom>(`${this.url}/wisdom/${id}`, httpOptions);
+    query = this.http.get<UpdateWisdom>(`${this.url}/wisdom/${id}`,{headers: this.httpOptions});
     query.subscribe(a => {
       this.wisdomToEdit.AuthorId = a.Author.AuthorId;
       this.wisdomToEdit.AuthorName = a.Author.AuthorName;
@@ -73,7 +69,7 @@ export class WapiServiceService {
   getWisdom(): Wisdom[] {
     this.wisdomList = [];
     var query: any = [];
-    query = this.http.get(`${this.url}/wisdom`, httpOptions);
+    query = this.http.get(`${this.url}/wisdom`,{headers: this.httpOptions});
     query.subscribe(wisdom => {
       wisdom.map(w => {
         let newWiz = new Wisdom();
@@ -90,7 +86,7 @@ export class WapiServiceService {
   getYourWisdom(): Wisdom[] {
     this.wisdomList = [];
     var query: any = [];
-    query = this.http.get(`${this.url}/wisdom/yours`, httpOptions);
+    query = this.http.get(`${this.url}/wisdom/yours`,{headers: this.httpOptions});
     query.subscribe(wisdom => {
       wisdom.map(w => {
         let newWiz = new Wisdom();
@@ -106,7 +102,7 @@ export class WapiServiceService {
   }
   getAuthors(): Author[] {
     var query: any = [];
-    query = this.http.get(`${this.url}/author`, httpOptions);
+    query = this.http.get(`${this.url}/author`,{headers: this.httpOptions});
     query.subscribe(author => {
       author.map(a => {
         let newAuth = new Author();
@@ -120,7 +116,7 @@ export class WapiServiceService {
   }
   removeWisdom(id: number) {
     console.log(id);
-    return this.http.delete(`${this.url}/wisdom/${id}`, httpOptions)
+    return this.http.delete(`${this.url}/wisdom/${id}`,{headers: this.httpOptions})
       .subscribe(a => {
         (blank: any) => a
         location.reload();

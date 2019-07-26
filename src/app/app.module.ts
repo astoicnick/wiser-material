@@ -9,10 +9,13 @@ import {HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateComponent } from './create/create.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowseComponent } from './browse/browse.component';
 import { ManageComponent } from './manage/manage.component';
 import { EditComponent } from './edit/edit.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { EditComponent } from './edit/edit.component';
     CreateComponent,
     BrowseComponent,
     ManageComponent,
-    EditComponent
+    EditComponent,
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +35,12 @@ import { EditComponent } from './edit/edit.component';
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

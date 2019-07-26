@@ -1,5 +1,5 @@
 <form class="formContainer">
-  <h1 style="font-family: 'Cinzel Decorative', cursive;text-align: center;" color="accent">Add Wisdom</h1>
+  <h1 style="font-family: 'Cinzel Decorative', cursive;text-align: center;color: #2380c6;">Add Wisdom</h1>
     <h3 style="margin: 0;">Select Existing Author</h3>
     <mat-form-field>
       <mat-select placeholder="Authors">
@@ -9,7 +9,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+    <hr>
     <h3 style="margin: 0;">Author not there? Create a new one</h3>
     <mat-form-field style="margin-bottom: 0;">
       <mat-label>Author First Name</mat-label>
@@ -21,7 +21,9 @@
       <input matInput [(ngModel)]="wisdomToAdd.AuthorLastName" placeholder="Last Name"
       name="AuthorLastName">
     </mat-form-field>
+    <hr>
 
+    <h3 style="margin: 0;">Wisdom Body</h3>
     <mat-form-field appearance="legacy">
       <mat-label>Content</mat-label>
       <input matInput placeholder="e.g: Stand up straight, not straightened."
@@ -35,7 +37,7 @@
       name="Source" [(ngModel)]="wisdomToAdd.Source">
       <mat-hint>The book and/or chapter the content is from</mat-hint>
     </mat-form-field>
-  <button mat-raised-button (click)="addWisdom()">Add</button>
+  <button mat-raised-button style="background-color: #2380c6; color: whitesmoke; width: 50vw;margin: auto;" (click)="addWisdom()">Add</button>
 </form>
 <!-- <div *ngFor="let author in authorList">
   <p>{{ author.id }}</p>
