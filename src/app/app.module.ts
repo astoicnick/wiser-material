@@ -14,7 +14,7 @@ import { BrowseComponent } from './browse/browse.component';
 import { ManageComponent } from './manage/manage.component';
 import { EditComponent } from './edit/edit.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './Services/auth.service';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({

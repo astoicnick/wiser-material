@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Wisdom } from '../wisdom';
-import { WapiServiceService } from '../wapi-service.service';
+import { Wisdom } from '../Models/wisdom';
+import { WapiServiceService } from '../Services/wapi-service.service';
 
 @Component({
   selector: 'app-browse',
@@ -12,11 +12,16 @@ wisdomList: Wisdom[] = [];
   constructor(private wapi: WapiServiceService) { }
 
   ngOnInit() {
-    console.log('yea');
+    this.authGuard();
     this.getWisdom();
   }
   getWisdom() {
     this.wisdomList = this.wapi.getWisdom();
+  }
+  authGuard() {
+    if (localStorage.getItem('id_token') == null) {
+      location.replace('/login');
+    }
   }
 
 }

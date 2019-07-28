@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Wisdom } from './wisdom';
-import { Author } from './Author';
-import { CreateWisdom } from './CreateWisdom';
-import { UpdateWisdom } from './UpdateWisdom';
+import { Wisdom } from '../Models/wisdom';
+import { Author } from '../Models/Author';
+import { CreateWisdom } from '../Models/CreateWisdom';
+import { UpdateWisdom } from '../Models/UpdateWisdom';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -28,8 +28,11 @@ export class WapiServiceService {
   constructor(private http: HttpClient, private authService: AuthService) { }
   private httpOptions: HttpHeaders = this.authService.setHeader();
   createWisdom(wisdomToAdd: CreateWisdom) {
-    console.log(wisdomToAdd);
-    return this.http.post(`${this.url}/wisdom`, wisdomToAdd,{headers: this.httpOptions} );
+    var blankSub = this.http.post(`${this.url}/wisdom`, wisdomToAdd,{headers: this.httpOptions})
+    .subscribe(a => {
+      (blank: any) => a;
+      location.replace('/home');
+    })
   }
   editWisdom(wisdomToEdit: UpdateWisdom) {
     return this.http.put(`${this.url}/wisdom`, wisdomToEdit,{headers: this.httpOptions})
@@ -49,22 +52,6 @@ export class WapiServiceService {
       this.wisdomToEdit.WisdomId = a.WisdomId;
       console.log(this.wisdomToEdit);
     });
-
-    // query.subscribe(wisdom => {
-    //   wisdom.map(w=> {
-    //     let newWiz = new UpdateWisdom();
-    //     newWiz.AuthorId = query.Author.AuthorId;
-    //     newWiz.AuthorName = query.Author.AuthorName;
-    //     newWiz.Content = query.Content;
-    //     newWiz.Source = query.Source;
-    //     newWiz.IsUpvoted = query.IsUpvoted;
-    //     newWiz.UserId = query.UserId;
-    //     newWiz.WisdomGenre = 0;
-    //     newWiz.WisdomId = query.WisdomId;
-    //     console.log(newWiz);
-    //     this.wisdomToEdit = newWiz;
-    //   });
-    // })
   }
   getWisdom(): Wisdom[] {
     this.wisdomList = [];

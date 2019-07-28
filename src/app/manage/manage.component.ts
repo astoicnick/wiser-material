@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WapiServiceService } from '../wapi-service.service';
-import { Wisdom } from '../wisdom';
+import { WapiServiceService } from '../Services/wapi-service.service';
+import { Wisdom } from '../Models/wisdom';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +14,7 @@ export class ManageComponent implements OnInit {
   constructor(private wapi: WapiServiceService, public router: Router) { }
 
   ngOnInit() {
+    this.authGuard();
     this.getWisdom();
   }
   getWisdom(): void {
@@ -31,5 +32,9 @@ export class ManageComponent implements OnInit {
     this.wapi.getUpdateWisdom(id);
     this.router.navigate(['edit']);
   }
-
+  authGuard() {
+    if (localStorage.getItem('id_token') == null) {
+      location.replace('/login');
+    }
+  }
 }

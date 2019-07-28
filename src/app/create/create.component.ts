@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Author } from '../Author';
-import { WapiServiceService } from '../wapi-service.service';
-import { CreateWisdom } from '../CreateWisdom';
+import { Author } from '../Models/Author';
+import { WapiServiceService } from '../Services/wapi-service.service';
+import { CreateWisdom } from '../Models/CreateWisdom';
 import { FormControl } from '@angular/forms';
 import { Source } from 'webpack-sources';
 import { Router } from '@angular/router';
@@ -27,6 +27,7 @@ authorList: Author[] = [];
   constructor(private wapi: WapiServiceService, private router: Router) {}
 
   ngOnInit() {
+    this.authGuard();
     this.getAuthors();
   }
   getAuthors(): void {
@@ -34,11 +35,14 @@ authorList: Author[] = [];
   }
   addWisdom() {
     this.wapi.createWisdom(this.wisdomToAdd);
-    this.router.navigate(['manage'])
-    .then(a=> this.router.navigate(['home']));
   }
   setAuthorId(id: number): void {
     this.wisdomToAdd.AuthorId =  id;
   }
 
+  authGuard() {
+    if (localStorage.getItem('id_token') == null) {
+      location.replace('/login');
+    }
+  }
 }

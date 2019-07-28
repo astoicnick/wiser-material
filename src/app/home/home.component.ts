@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Wisdom } from '../wisdom';
-import { WapiServiceService } from '../wapi-service.service';
+import { Wisdom } from '../Models/wisdom';
+import { WapiServiceService } from '../Services/wapi-service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +14,15 @@ export class HomeComponent implements OnInit {
   constructor(private wapi: WapiServiceService) { }
 
   ngOnInit() {
+    this.authGuard();
     this.getWisdom();
   }
   getWisdom(): void {
     this.wisdomList = this.wapi.getYourWisdom();
+  }
+  authGuard() {
+    if (localStorage.getItem('id_token') == null) {
+      location.replace('/login');
+    }
   }
 }

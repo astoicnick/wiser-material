@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RegisterUser } from './RegisterUser';
+import { RegisterUser } from '../Models/RegisterUser';
 import { encode } from 'punycode';
-import { Token } from './Token';
+import { Token } from '../Token';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
@@ -33,7 +33,6 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.isLoggedIn.next(false);
-
     this.http.post(`${this.url}/account/logout`, {headers: this.setHeader()});
     this.router.navigate(['/login']);
     console.log(localStorage.getItem('id_token'));

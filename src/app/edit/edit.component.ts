@@ -1,9 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
-import { Author } from '../Author';
-import { CreateWisdom } from '../CreateWisdom';
-import { WapiServiceService } from '../wapi-service.service';
+import { Author } from '../Models/Author';
+import { CreateWisdom } from '../Models/CreateWisdom';
+import { WapiServiceService } from '../Services/wapi-service.service';
 import { Router } from '@angular/router';
-import { UpdateWisdom } from '../UpdateWisdom';
+import { UpdateWisdom } from '../Models/UpdateWisdom';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 
 @Component({
@@ -28,6 +29,7 @@ export class EditComponent implements OnInit {
   constructor(private wapi: WapiServiceService, private router: Router) { }
 
   ngOnInit() {
+    this.authGuard();
     this.getWisdomToEdit();
     this.getAuthors();
   }
@@ -43,5 +45,10 @@ export class EditComponent implements OnInit {
   }
   getWisdomToEdit() {
     this.wisdomToEdit = this.wapi.wisdomToEdit;
+  }
+  authGuard() {
+    if (localStorage.getItem('id_token') == null) {
+      location.replace('/login');
+    }
   }
 }
